@@ -5,7 +5,7 @@ var col = 6;
 var map = [];
 var couarr = [];
 
-//建立地圖
+
 for (var i = 0; i < row; i++) {
     map.push([]);
     couarr.push([]);
@@ -18,28 +18,6 @@ for (var i = 0; i < row; i++) {
 
 
 
-
-//用遞迴去跑 寫起來方便又快速
-for (var i = 0; i < row; i++) {
-    for (var j = 0; j < col; j++){
-        var root = map[i][j].split(",");
-        couarr[i][j] = DFS(root[0], root[1], [i + "," + j], 1);
-    }
-}
-
-function DFS(R, C, arr, cou){
-    if(arr.indexOf(R + "," + C) == -1){
-        arr.push(R + "," + C);
-        var node = map[R][C].split(",");
-        return DFS(node[0], node[1], arr, cou + 1);
-    }else{
-        return cou;
-    }
-}
-
-
-
-//為了效能接用迴圈跑
 for (var i = 0; i < row; i++) {
     for (var j = 0; j < col; j++){
         var now = map[i][j].split(",");
@@ -61,11 +39,6 @@ for (var i = 0; i < row; i++) {
 
 
 
-
-
-
-
-//計算最大值與列出能夠走出最大值的R與C
 var maxArr = [];
 var maxNum = 0;
 
@@ -80,18 +53,7 @@ for (var i = 0; i < row; i++) {
     } 
 }
 
-console.log("Max step:" + maxNum + "\n" + "能夠走出最大步數的 R與C: ");//印出最大的步數
-console.log(maxArr);//印出能夠走出最大步數的 R與C 還有在地圖中顯示的內容
+console.log("Max step:" + maxNum + "\n" + "能夠走出最大步數的 R與C: ");
+console.log(maxArr);
 
 
-
-//讓使用著能夠一直的去輸入R與C
-while(true){
-    var startR= parseInt(readline.question('Row start?'));
-    var startC= parseInt(readline.question('Col start?'));
-    if(isNaN(startR) || isNaN(startC) || startR<0 || startR>=row || startC<0 || startC>=col){
-        console.log("Input error! ");
-        continue;
-    }
-    console.log("Visit:"+ startR + ", " + startC + "  Step:" + couarr[startR][startC]);
- }
