@@ -14,26 +14,26 @@ poker.sort(function(a, b){
 
 
 for (i = 0; i < 4; i++){
-    var temp = "";
+    var content = "";
     var player = poker.slice(0, 13);
     poker.splice(0, 13);
     player.sort().reverse();
     for (j = 0; j < 13; j++) {
         switch (String(player[j])[0]) {
             case "1":
-                temp += "C";//梅花
+                content += "C";
                 break;
             case "2":
-                temp += "D";//方塊
+                content += "D";
                 break;
             case "3":
-                temp += "H";//紅心
+                content += "H";
                 break;
             case "4":
-                temp += "S";//黑桃
+                content += "S";
                 break;
         }
-        temp += Number(String(player[j]).substring(1, 3)) + ", ";
+        content += Number(String(player[j]).substring(1, 3)) + ", ";
     }
-    console.log("Player" + (i + 1) + ": " + temp.substring(0, temp.length - 2));
+    console.log("Player" + (i + 1) + ": " + content.substring(0, content.length - 2));
 }
