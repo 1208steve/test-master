@@ -58,7 +58,7 @@ Life.prototype.update = function(){
     for (let r = 0; r < this.row; r++) {
         for (let c = 0; c < this.col; c++) {
             var nCount = this.neighborCount(r, c);
-            if(nCount == 3 && this.getStatusAt(r,c)==DEAD) //DEAD => LIVE
+            if(nCount == 3 ) //DEAD => LIVE
                nextGrid[r][c] = LIVE;
             if((nCount <2 || nCount>3)) //LIFE=>DEAD 
                nextGrid[r][c] = DEAD;
@@ -93,7 +93,7 @@ class Board{
 
 
 //unit test
-var game = new Life(document.getElementById("input1").value,document.getElementById("input2").value);
+var game = new Life(20,20);
 game.Initialize();
 var gameBorad = new Board(game);
 gameBorad.draw();
@@ -108,18 +108,8 @@ function clickHandler(event){
     var row = Math.floor(event.offsetY/gameBorad.size);
     if(game.getStatusAt(row, col)== LIVE){
        game.setStatusAt(row,col, DEAD);
-       gameBorad.ctx2d.fillStyle = "#ffffff";
     }else{
         game.setStatusAt(row,col, LIVE); 
-    }
-    gameBorad.ctx2d.fillRect(col * gameBorad.size, row * gameBorad.size, gameBorad.size, gameBorad.size);
-    gameBorad.ctx2d.fillStyle = "#ff0000";
-    gameBorad.ctx2d.strokeRect(col * gameBorad.size, row * gameBorad.size, gameBorad.size, gameBorad.size);
+    }   
 }
 
-function next1(){
-    game = new Life(document.getElementById("input1").value,document.getElementById("input2").value);
-    gameBorad = new Board(game);
-    game.Initialize();
-    gameBorad.draw();
-}
